@@ -1,0 +1,51 @@
+Sub InsertBlankRowsAndDeleteEmptyCells()
+    InsertBlankRowsToResolveSpillErrors
+    RemoveBlankRows
+End Sub
+
+Sub InsertBlankRowsToResolveSpillErrors()
+    Dim lastRow As Long
+    Dim i As Long
+    Dim blankCount As Integer
+
+    ' Find the last row with data in column A
+    lastRow = Cells(Rows.Count, 1).End(xlUp).Row
+
+    ' Loop through each row
+    For i = lastRow To 1 Step -1
+        If Cells(i, 1).Text = "#SPILL!" Then
+          While (Cells(i, 1).Text = "#SPILL!")
+            Rows(i + 1).Insert Shift:=xlDown
+          Wend
+        End If
+    Next i
+    
+    RemoveBlankRows
+    
+End Sub
+
+
+Sub RemoveBlankRows()
+        Dim lastRow As Long
+        
+        lastRow = Cells(Rows.Count, 1).End(xlUp).Row
+
+        ' Check for two consecutive blank cells
+        blankCount = 0
+        
+        For i = lastRow To 1 Step -1
+            If Cells(i, 1).Text = "" Then
+                blankCount = blankCount + 1
+            Else
+                blankCount = 0
+            End If
+
+            ' If two consecutive blank cells are found, delete the row
+            If blankCount = 2 Then
+                Rows(i).Delete
+                RemoveBlankRows
+            End If
+        Next i
+
+
+End Sub
