@@ -1,0 +1,18 @@
+Sub UpdateData()
+
+    Sheets("QueryTab").Select
+    Range("D15").Select
+    Selection.ListObject.QueryTable.Refresh BackgroundQuery:=False
+
+    Range("B1").Select
+    ActiveCell.FormulaR1C1 = "=NOW()"
+    Range("B2").Select
+    Range("C1").Value = Range("B1").Value
+
+    Sheets("PivotTableTab").Select
+    Range("C17").Select
+    ActiveSheet.PivotTables("PivotTable1").PivotCache.Refresh
+
+    Sheets("Summary").Select
+
+End Sub
