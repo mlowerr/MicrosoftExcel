@@ -1,0 +1,18 @@
+Example formula:
+
+=FILTER(
+
+INDEX(WorkItemsTab,SEQUENCE(ROWS(WorkItemsTab)),{1,58,31,27,30,3}),
+
+(
+ISNUMBER(MATCH(WorkItemsTab[ParentWorkItemId],{9559702,8893732,8893729,8895219,8893735,9639469,8893731},0))
+*ISNUMBER(MATCH(WorkItemsTab[WorkItemType],{"Bug","Support Ticket","User Story"},0))
+*( (WorkItemsTab[CreatedDate]>=$O$2)+(WorkItemsTab[ClosedDate]>=$O$2))),""
+
+)
+
+Relevant parts:
+INDEX(WorkItemsTab,SEQUENCE(ROWS(WorkItemsTab)),{1,58,31,27,30,3})
+- Index is used to limit and reorder the columns returned as defined by the {} section
+
+NOTE: Filter criteria can still be applied to all columns from the underlying source
