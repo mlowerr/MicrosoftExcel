@@ -1,0 +1,13 @@
+Macro - bulk populate 'notes' on cells based on values in another cell.
+
+Sub AddNotesFromRow3ToRow2()
+    Dim ws As Worksheet
+    Set ws = ActiveSheet
+    Dim lastCol As Long
+    lastCol = ws.Cells(2, ws.Columns.Count).End(xlToLeft).Column
+
+    Dim i As Long
+    For i = 1 To lastCol
+        ws.Cells(2, i).NoteText Text:=ws.Cells(3, i).Value
+    Next i
+End Sub
