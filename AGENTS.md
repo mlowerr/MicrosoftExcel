@@ -17,6 +17,7 @@
 - New formula tip files should use clear `FilterFunction-...` names when they are FILTER-specific examples.
 - Keep updates focused on the specific Excel formula or VBA macro referenced by the filename.
 - Preserve the existing plain-text format of the macro/formula files.
+- Prefer a short instructional structure in snippet files: title, usage context, "What you get", "Why you would use this", then the formula/macro.
 - Update the file list and descriptions in `README.md` whenever files change.
 
 ## Required maintenance steps

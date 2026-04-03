@@ -1,3 +1,18 @@
+Macro Tip: Blocking Refresh Query Data, Timestamp It, Then Refresh a Pivot Table
+
+Use this macro when you want refresh steps to run in sequence (not in the background), then update a pivot cache and return users to a summary sheet.
+
+What you get:
+- Query table refresh completes before the next step starts (`BackgroundQuery:=False`).
+- A timestamp is written and captured as a static value.
+- Pivot cache is refreshed after the data refresh, reducing stale pivot output.
+- Workbook focus returns to `Summary` at the end.
+
+Why you would use this:
+- Ensure report users do not see a pivot table refreshed against outdated query results.
+- Leave an audit-friendly "last refresh" timestamp.
+- Create a one-click refresh flow for non-technical workbook users.
+
 Sub UpdateData()
 
     Sheets("QueryTab").Select

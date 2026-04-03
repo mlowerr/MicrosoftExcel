@@ -1,3 +1,17 @@
+Macro Tip: Resolve #SPILL! Space Constraints and Then Clean Excess Blank Rows
+
+Use these macros when dynamic array formulas in column A return `#SPILL!` because they do not have enough room to expand, and you want a follow-up cleanup pass.
+
+What you get:
+- Automatic insertion of rows beneath spill errors until each dynamic array can spill.
+- A cleanup pass that removes extra consecutive blank rows.
+- A wrapper macro to run both steps together.
+
+Why you would use this:
+- Quickly repair space-related spill issues in imported or frequently reshaped sheets.
+- Reduce manual row insert/delete work in large datasets.
+- Keep worksheet layout cleaner after automated spill fixes.
+
 Sub InsertBlankRowsAndDeleteEmptyCells()
     InsertBlankRowsToResolveSpillErrors
     RemoveBlankRows
@@ -24,7 +38,6 @@ Sub InsertBlankRowsToResolveSpillErrors()
     
 End Sub
 
-
 Sub RemoveBlankRows()
         Dim lastRow As Long
         
@@ -46,6 +59,5 @@ Sub RemoveBlankRows()
                 RemoveBlankRows
             End If
         Next i
-
 
 End Sub
