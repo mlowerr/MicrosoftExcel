@@ -1,4 +1,16 @@
-Macro - bulk populate 'notes' on cells based on values in another cell.
+Macro Tip: Bulk Assign Cell Notes from One Row to Another
+
+Use this macro when row 3 contains explanatory text and row 2 contains headers or labels where you want those explanations stored as legacy cell notes.
+
+What you get:
+- Notes are applied across all populated columns in row 2.
+- Note text is sourced from row 3 in the same column.
+- A fast way to document many columns at once without opening each note manually.
+
+Why you would use this:
+- Add consistent, hover-based documentation for wide tables.
+- Speed up migration of inline helper text into notes.
+- Improve workbook usability for collaborators reviewing column definitions.
 
 Sub AddNotesFromRow3ToRow2()
     Dim ws As Worksheet

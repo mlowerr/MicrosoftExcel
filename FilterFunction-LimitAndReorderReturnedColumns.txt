@@ -1,18 +1,25 @@
+FILTER Tip: Limit and Reorder Returned Columns While Keeping Full Filter Logic
+
+Use this pattern when you need a clean, report-friendly output with only selected columns in a custom order, while still filtering based on any columns in the source table.
+
 Example formula:
 
 =FILTER(
-
-INDEX(WorkItemsTab,SEQUENCE(ROWS(WorkItemsTab)),{1,58,31,27,30,3}),
-
-(
-ISNUMBER(MATCH(WorkItemsTab[ParentWorkItemId],{9559702,8893732,8893729,8895219,8893735,9639469,8893731},0))
-*ISNUMBER(MATCH(WorkItemsTab[WorkItemType],{"Bug","Support Ticket","User Story"},0))
-*( (WorkItemsTab[CreatedDate]>=$O$2)+(WorkItemsTab[ClosedDate]>=$O$2))),""
-
+    INDEX(WorkItemsTab, SEQUENCE(ROWS(WorkItemsTab)), {1,58,31,27,30,3}),
+    (
+        ISNUMBER(MATCH(WorkItemsTab[ParentWorkItemId], {9559702,8893732,8893729,8895219,8893735,9639469,8893731}, 0))
+        * ISNUMBER(MATCH(WorkItemsTab[WorkItemType], {"Bug","Support Ticket","User Story"}, 0))
+        * ((WorkItemsTab[CreatedDate] >= $O$2) + (WorkItemsTab[ClosedDate] >= $O$2))
+    ),
+    ""
 )
 
-Relevant parts:
-INDEX(WorkItemsTab,SEQUENCE(ROWS(WorkItemsTab)),{1,58,31,27,30,3})
-- Index is used to limit and reorder the columns returned as defined by the {} section
+What you get:
+- A filtered spilled range that returns only the columns in `{1,58,31,27,30,3}`.
+- Output columns reordered for presentation without modifying the original source table.
+- A blank result (`""`) instead of an error when no rows match.
 
-NOTE: Filter criteria can still be applied to all columns from the underlying source
+Why you would use this:
+- Build stakeholder-facing summaries without helper columns.
+- Keep filtering rules tied to full source data, even when you only display a subset of columns.
+- Avoid restructuring your source table just to match reporting layout.

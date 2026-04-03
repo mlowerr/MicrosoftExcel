@@ -19,3 +19,11 @@ Example formula:
 What this does:
 - Keeps your existing `FILTER` logic unchanged.
 - Post-processes the spilled result so any returned `0` is shown as a blank (`""`).
+
+What you get:
+- Cleaner report output that looks blank instead of showing misleading zeros.
+- Reusable structure where `LET` stores the filtered array once and reuses it.
+
+Why you would use this:
+- Improve readability in dashboards and summary sheets.
+- Avoid confusion when viewers may interpret `0` as a real measured value.
