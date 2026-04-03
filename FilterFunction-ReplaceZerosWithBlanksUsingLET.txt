@@ -1,0 +1,21 @@
+FILTER Tip: Replace Returned 0 Values with Blanks Using LET
+
+Use this pattern when a `FILTER` result is used for display (such as a summary report) and blank source rows appear as `0` in the spilled output.
+
+Important: This approach assumes `0` is not a valid real value in your dataset.
+
+Example formula:
+
+=LET(
+    out,
+    FILTER(
+        INDEX(ResponseTable, SEQUENCE(ROWS(ResponseTable)), {1,4,5,6}),
+        ResponseTable[Q3: What makes you prefer the option selected in question 2?] <> "",
+        ""
+    ),
+    IF(out=0, "", out)
+)
+
+What this does:
+- Keeps your existing `FILTER` logic unchanged.
+- Post-processes the spilled result so any returned `0` is shown as a blank (`""`).

@@ -7,12 +7,14 @@
 
 ## Files and responsibilities
 - `FilterFunction-LimitAndReorderReturnedColumns.txt`: Excel `FILTER`/`INDEX` formula example that limits rows and reorders returned columns.
+- `FilterFunction-ReplaceZerosWithBlanksUsingLET.txt`: Excel `LET` + `FILTER` example that replaces returned `0` values with blanks for display-only outputs where `0` is not a valid real value.
 - `Macro-BlockingRefreshAndUpdateOfPivotTableAfter`: VBA macro to refresh a query table, timestamp it, refresh a pivot cache, and return to a summary sheet.
 - `Macro-BulkAssignNotes`: VBA macro to bulk-assign cell notes from row 3 into row 2.
 - `macro-resolve-dynamic-range-spacing-and-remove-excess-rows.txt`: VBA macros to insert blank rows for `#SPILL!` fixes, then remove excess blank rows.
 - `README.md`: Top-level description and file index.
 
 ## Working conventions
+- New formula tip files should use clear `FilterFunction-...` names when they are FILTER-specific examples.
 - Keep updates focused on the specific Excel formula or VBA macro referenced by the filename.
 - Preserve the existing plain-text format of the macro/formula files.
 - Update the file list and descriptions in `README.md` whenever files change.
